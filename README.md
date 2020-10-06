@@ -41,11 +41,9 @@ Some assumptions that we make with our model are:
      style="width:250px;height:400px;float left;"/>
 
 ## Heat Transfer Equations
-ODE for temperature inside the house:
-$$
-q \cdot A - \frac{(T_{in} - T_{out})}{(R_{tot})} = m \cdot c \cdot \frac{dT_{in}}{dt}
-$$
-where
+ODE for temperature inside the house:  
+<img src="https://render.githubusercontent.com/render/math?math=q \cdot A - \frac{(T_{in} - T_{out})}{(R_{tot})} = m \cdot c \cdot \frac{dT_{in}}{dt}">  
+where  
 $$
 R_{tot} = \frac{1}{h_{tile-air} \cdot A_{tile}} + (\frac{1}{h_{air-wall} \cdot A_{wall}} + \frac{L_{wall}}{K_{wall} \cdot A_{wall}} + \frac{1}{h_{wall-air} \cdot A_{wall}})^{-1} + (\frac{1}{h_{air-window} \cdot A_{window}} + \frac{L_{window}}{K_{window} \cdot A_{window}} + \frac{1}{h_{window-air} \cdot A_{window}})^{-1}
 $$
