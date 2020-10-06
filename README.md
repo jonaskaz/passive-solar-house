@@ -33,18 +33,23 @@ Some assumptions that we make with our model are:
 
 
 ## Some Math (and MATLAB)
+<img src="data/figs/HeatFlow.jpg"
+     alt="Resistor Diagram"
+     style="width:700px;height:600px;float left;"/>
 <img src="data/figs/ResistorDiagram1.jpg"
      alt="Resistor Diagram"
      style="width:250px;height:400px;float left;"/>
 
+## Heat Transfer Equations
+ODE for temperature inside the house:
 $$
-q \cdot A - \frac{(T_{in} - T_{out})}{(R_{tot})} = m \cdot c \cdot \frac{dT}{dt}
+q \cdot A - \frac{(T_{in} - T_{out})}{(R_{tot})} = m \cdot c \cdot \frac{dT_{in}}{dt}
 $$
+where
 $$
 R_{tot} = \frac{1}{h_{tile-air} \cdot A_{tile}} + (\frac{1}{h_{air-wall} \cdot A_{wall}} + \frac{L_{wall}}{K_{wall} \cdot A_{wall}} + \frac{1}{h_{wall-air} \cdot A_{wall}})^{-1} + (\frac{1}{h_{air-window} \cdot A_{window}} + \frac{L_{window}}{K_{window} \cdot A_{window}} + \frac{1}{h_{window-air} \cdot A_{window}})^{-1}
 $$
-
-
+This equation tells us that given a set of house material properties, sizes, and solar radiation we can determine the temperature over time of the house. Some major assumptions are that solar radiation and the outside temperature are constant. 
 
 ## Moonshot
 Stretch goal of weird offset house?
