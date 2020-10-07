@@ -36,7 +36,7 @@ Some assumptions that we make with our model are:
 <img src="data/figs/HeatFlow.jpg"
      alt="Resistor Diagram"
      style="width:700px;height:600px;float left;"/>
-<img src="data/figs/ResistorDiagram1.jpg"
+<img src="data/figs/ResistorDiagram1.JPG"
      alt="Resistor Diagram"
      style="width:250px;height:400px;float left;"/>
 
