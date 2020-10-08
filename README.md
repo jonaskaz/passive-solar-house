@@ -20,7 +20,7 @@ Some sections for the future:
 * [Lessons Learned](#following-a-Wall)
 
 
-## Minimum Viable Project
+# Minimum Viable Project
 Ideal orientation is true north but orientations of up to 20° west of north and 30° east of north still allow good passive sun control
 
 Some assumptions that we make with our model are:
@@ -41,14 +41,19 @@ Some assumptions that we make with our model are:
      style="width:250px;height:400px;float left;"/>
 
 ## Heat Transfer Equations
-ODE for temperature inside the house:  
+ODE for temperature inside the house:
 <img src="https://render.githubusercontent.com/render/math?math=q \cdot A - \frac{(T_{in} - T_{out})}{(R_{tot})} = m \cdot c \cdot \frac{dT_{in}}{dt}">  
 where  
 <img src="data/figs/Rtot.PNG"> 
 This equation tells us that given a set of house material properties, sizes, and solar radiation we can determine the temperature over time of the house. Some major assumptions are that solar radiation and the outside temperature are constant. 
 
-## Moonshot
-Stretch goal of weird offset house?
+## Our Model
+<img src="data/figs/TempTimeMVP.jpg"
+     alt="Resistor Diagram"
+     style="width:500px;height:300px;float left;"/>
 
+As you can see, the overall behavior of our model is pretty reasonable. The first obvious problem, howevever is our range of equilibrium temperatures. As given by the assignment, the most comfortable temperature range to exist in is approximately 17&deg;C - 23&deg;C. Our model stablizes between 15&deg;C - 25&deg;C, which while small, is noticable. 
+
+One change we could make to decrease the variability of our house temperature throughout the day is to increase the size of our thermal mass, or change it to a material with a higher heat capacity. 
 ## Lessons Learned
 
