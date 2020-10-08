@@ -28,7 +28,7 @@ Some assumptions that we make with our model are:
 - Heat capacity of our tile floor is much greater than the rest of the house, therefore we can ignore the rest.
 - Our tile floor is suspended above our insulation (no conduction of heat)
 - Air flow in and out of the house is negligible
-- All solar radiation hitting the windows is absorbed, and solar radiation on other parts of the house is negligible
+- All solar radiation hitting the windows is absorbed by heat storage unit, and solar radiation on other parts of the house is negligible
 -  Heat storage unit is at a spatially uniform temperature
 
 

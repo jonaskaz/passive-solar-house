@@ -1,0 +1,17 @@
+---
+title: "COVID-19"
+author: "Jonas Kazlauskas"
+date: 2020-
+output:
+  github_document:
+    toc: true
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+```r{}
+df_pop <- read.csv("../data/ode/ode_data.csv")
+df_pop
+```
