@@ -1,10 +1,11 @@
 # MVP Passive Solar House Model
 
 import numpy as np
-import scipy.integrate as integrate
+from scipy.integrate import solve_ivp
 import csv
 
 from helpers import helper
+from plot import plot
 
 # Constants
 area_window = 2.6*5
@@ -38,20 +39,29 @@ CONV_window_air = helper.convection_resistance(h_window, area_window)
 R_wall = (CONV_air_wall + COND_through_wall + CONV_wall_air)
 R_window = (CONV_air_window + CONV_window_air)
 R_tot = CONV_tile_air + helper.parallel_adder(R_wall, R_window)
+print(R_tot)
 T_0 = T_outdoor
+days = 10
+tspan = (0, days*86400) # np.linspace(0, days*86400, 1000)
 
 def passive_house(t, T):
-    dT = np.array([
-        T,
-        500-(((T-T_outdoor)/R_tot))*(1/(mass_tile*C_tile))
-    ])
+    '''
+    Callable function to integrate
+    '''
+    #print(helper.solar_flux(t, area_window))
+    dT = helper.solar_flux(t, area_window)-(((T-T_outdoor)/R_tot))*(1/(mass_tile*C_tile))
     return dT
 
-def solve_ode():
-    days = 10
-    tspan = np.linspace(0, days*86400, days*86400)
-    Y = integrate.odeint(passive_house, [T_0, 0], tspan)
-    return Y
+def solve_ode(fun, tspan, T_0):
+    '''
+    Solves ode using solve_ivp
+    params:
+    fun = callable function to integrate
+    tspan = start and end time tuple
+    T_0 = initial value
+    '''
+    sol = solve_ivp(fun, tspan, np.array([T_0]), t_eval=np.linspace(tspan[0], tspan[1], 1000))
+    return sol
 
 def save_data(data):
     '''Saves data to csv
@@ -61,7 +71,11 @@ def save_data(data):
     np.savetxt("../data/ode/ode_data.csv", data)
 
 def run():
-    save_data(solve_ode())
+    data = solve_ode(passive_house, tspan, T_0)
+    #save_data(data)
+    plot.plot_temp_time(data)
 
 if __name__ == "__main__":
     run()
+    print(R_wall, R_window)
+    print(helper.parallel_adder(R_wall, R_window))

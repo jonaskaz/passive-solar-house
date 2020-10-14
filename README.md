@@ -54,6 +54,10 @@ This equation tells us that given a set of house material properties, sizes, and
 
 As you can see, the overall behavior of our model is pretty reasonable. The first obvious problem, howevever is our range of equilibrium temperatures. As given by the assignment, the most comfortable temperature range to exist in is approximately 17&deg;C - 23&deg;C. Our model stablizes between 15&deg;C - 25&deg;C, which while small, is noticable. 
 
-One change we could make to decrease the variability of our house temperature throughout the day is to increase the size of our thermal mass, or change it to a material with a higher heat capacity. 
+One change we could make to decrease the variability of our house temperature throughout the day is to increase the size of our thermal mass, or change it to a material with a higher heat capacity.
+
+Our model is predicting fairly reasonable temperatures, however it has a large range of temperatures throughout the day, which might be annoying living in the house. Next steps are too hone in the size or material of our thermal mass to decrease this variabillity. Additionally, 
+
+Our model is also somewhat *simple* and we can probably reduce our thermal range by making better assumptions or incorporating additional factors. 
 ## Lessons Learned
 

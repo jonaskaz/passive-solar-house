@@ -71,5 +71,5 @@ end
 
 % calculates solar flux given a time (t) and window area A
 function f = solar_flux(t, A)
-    f = A *(-361*cos((pi*t)/(12*3600)) + 224*cos((pi*t)/(6*3600)) + 210); % W/(m^2)
+    f = A *((-361*cos((pi*t)/(12*3600)) + 224*cos((pi*t)/(6*3600)) + 210)); % W/(m^2)
 end

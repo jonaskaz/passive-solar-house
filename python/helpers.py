@@ -40,5 +40,5 @@ class helper():
         '''
         R_total = 0
         for resistor in args:
-            R_total += 1/(1/resistor)
-        return R_total
+            R_total += 1/resistor
+        return 1/R_total
