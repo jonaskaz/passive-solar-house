@@ -33,22 +33,17 @@ days = 10;
 tspan = [0, days*86400];
 T_0 = T_outdoor;
 sol = solve_ode(tspan, T_0, area_window, R_tot, mass_tile, C_tile);
-t = sol(:,1);
-T = sol(:,2);
-[t1, T1] = ode45(@(t,T) (solar_flux(t, area_window)-((T-T_outdoor)/R_tot))*(1/(mass_tile*C_tile)), tspan, T_0);
+t = sol[:,1;
+T = sol(:,0);
+%[t, T] = ode45(@(t,T) (solar_flux(t, area_window)-((T-outside_temp(t))/R_tot))*(1/(mass_tile*C_tile)), tspan, T_0);
 t_hours  = t/3600;
-t_hours1 = t1/3600;
 figure()
-hold on
-plot(t_hours, T, '--', 'DisplayName', 'Variable Outside Temperature')
-plot(t_hours1, T1, '-', 'DisplayName', 'Constant Outside Temperature')
-title('Passive Solar House Temp Variable Temp outside')
+plot(t_hours, T, '--')
+title('Passive Solar House Temp')
 xlabel('Time (hours)')
 ylabel('Temperature (C)')
-legend()
-% max(T)
-% mean(T)
-
+max(T)
+mean(T)
 
 
 %%%
