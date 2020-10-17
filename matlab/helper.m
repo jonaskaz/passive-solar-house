@@ -6,7 +6,7 @@ classdef helper
     methods(Static)
         
         % Adds two resistances in parallel
-        % Returns resistance in ???units
+        % Returns resistance
         function f = parallel_adder(a, b)
             f = 1./((1./a) + (1./b));
         end
@@ -24,7 +24,7 @@ classdef helper
         end
         
         % Calculates solar flux given a time (t) and window area A
-        % Returns solar flux in ???units
+        % Returns solar flux
         function f = solar_flux(t, A)
             f = A *((-361*cos((pi*t)./(12*3600)) + 224*cos((pi*t)./(6*3600)) + 210)); % W/(m^2)
         end
@@ -36,7 +36,7 @@ classdef helper
         end
         
         % Ralculates the total resistance 
-        % Returns resistance in ??units
+        % Returns resistance
         function f = total_resistance(h_indoor, h_outdoor, h_window, area_tile, area_walls, area_window, thickness_window, thickness_wall, k_fiberglass, k_glass)
             CONV_tile_air = helper.convection_resistance(h_indoor, area_tile);
             CONV_air_wall = helper.convection_resistance(h_indoor, area_walls);
@@ -54,14 +54,14 @@ classdef helper
         
         % Calculates the convection resistance given heat transfer coefficient (h)
         % and cross-sectional area (A)
-        % Returns resistance in ???units
+        % Returns resistance
         function f = convection_resistance(h, A)
             f = 1./(h*A);
         end
         
         % Calculates the conduction resistance given thickness (L), thermal
         % conductivity (k), and cross-sectional area (A)
-        % Returns resistance in ???units
+        % Returns resistance
         function f = conduction_resistance(L, k, A)
             f = L./(k*A);
         end

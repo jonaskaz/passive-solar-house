@@ -9,14 +9,14 @@ C = C.init;
 %%%
 %%% Run Model over time
 %%%
+
 [t, T] = run(C, 20, false);
-[t1, T1] = run(C, 20, true);
 t_hours  = t/3600;
-t_hours1  = t1/3600;
 hold on
 plot(t_hours, T, '-', 'DisplayName', 'Variable Outside Temperature')
-plot(t_hours1, T1, '--', 'DisplayName', 'Constant Outside Temperature')
-hold off
+% [t1, T1] = run(C, 20, true);
+% t_hours1  = t1/3600;
+%plot(t_hours1, T1, '--', 'DisplayName', 'Constant Outside Temperature')
 % %yline(max(T(100:end,:)), 'g')
 % yline(max(T), 'g')
 % max(T)
@@ -25,16 +25,17 @@ hold off
 % yline(min(T), 'r')
 % min(T)
 % %min(T(100:end,:))
+hold off
 title('Inside Temperature of Passive Solar House')
 xlabel('Time (hours)')
 ylabel('Temperature (C)')
 legend()
 
 % Run model over time while sweeping insulation thickness
-%sweep_insulation(0.01, 0.03, 5, C, 20)
+sweep_insulation(0.01, 0.03, 5, C, 20)
 
 % Run model over time while sweeping tile thickness
-%sweep_tile(0.3, 0.7, 5, C, 1)
+sweep_tile(0.3, 0.7, 5, C, 1)
 
 
 %%%
