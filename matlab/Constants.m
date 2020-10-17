@@ -13,7 +13,7 @@ classdef Constants
     % )
     % m (
         thickness_wall = 0.015; 
-        thickness_tile = 0.3; 
+        thickness_tile = 0.5; 
         thickness_window = 0.003175;
     % )
         h_window = 0.7;              % W/(m^2)K

@@ -17,6 +17,12 @@ classdef helper
             [t, T] = ode45(@(t,T) (helper.solar_flux(t, area_window)-((T-helper.outside_temp(t))./R_tot))*(1./(mass_tile*C_tile)), tspan, T_0);
         end
         
+        % Solves the ode with constant temp
+        % Returns a t x 2 matrix with time and Temp
+        function [t, T] = solve_ode_con(tspan, T_0, area_window, R_tot, mass_tile, C_tile)
+            [t, T] = ode45(@(t,T) (helper.solar_flux(t, area_window)-((T-T_0)./R_tot))*(1./(mass_tile*C_tile)), tspan, T_0);
+        end
+        
         % Calculates solar flux given a time (t) and window area A
         % Returns solar flux in ???units
         function f = solar_flux(t, A)
