@@ -10,38 +10,62 @@ C = C.init;
 %%% Run Model over time
 %%%
 
-[t, T] = run(C, 20, false);
-t_hours  = t/3600;
 hold on
-plot(t_hours, T, '-', 'DisplayName', 'Variable Outside Temperature')
-% [t1, T1] = run(C, 20, true);
-% t_hours1  = t1/3600;
-%plot(t_hours1, T1, '--', 'DisplayName', 'Constant Outside Temperature')
-% %yline(max(T(100:end,:)), 'g')
-% yline(max(T), 'g')
-% max(T)
-% %max(T(100:end,:))
-% %yline(min(T(100:end,:)), 'r')
-% yline(min(T), 'r')
-% min(T)
-% %min(T(100:end,:))
-hold off
-title('Inside Temperature of Passive Solar House')
+%%%
+%%% With 1 thermal mass
+%%%
+% [t, T] = run(C, 20, false);
+% t_hours  = t/3600;
+% plot(t_hours, T, '-', 'DisplayName', 'Temperature')
+% title('Temperature of Passive Solar House with 1 thermal mass')
+% xlabel('Time (hours)')
+% ylabel('Temperature (C)')
+% legend()
+
+
+%%% 
+%%% With 2 thermal masses
+%%%
+[t, T] = run2(C, 5);
+t_hours  = t/3600;
+plot(t_hours, T(:,1), '-', 'DisplayName', 'Tile Temperature')
+plot(t_hours, T(:,2), '-', 'DisplayName', 'Air temperature')
+yline(max(T(100:end,2)), 'r')
+yline(min(T(100:end,2)), 'g')
+title('Temperature of Passive Solar House with 2 thermal masses')
 xlabel('Time (hours)')
 ylabel('Temperature (C)')
 legend()
 
-% Run model over time while sweeping insulation thickness
-sweep_insulation(0.01, 0.03, 5, C, 20)
+%%%
+%%% With 1 thermal mass and constant temp
+%%%
+%[t1, T1] = run(C, 20, true);
+%t_hours1  = t1/3600;
+%plot(t_hours1, T1, '-', 'DisplayName', 'Constant Outside Temperature')
+% %yline(max(T(100:end,:)), 'g')
+% yline(max(T), 'g')
+% title('Temperature of Passive Solar House with Constant T')
+% xlabel('Time (hours)')
+% ylabel('Temperature (C)')
+% legend()
 
-% Run model over time while sweeping tile thickness
-sweep_tile(0.3, 0.7, 5, C, 1)
+hold off
+
+%%%
+%%% Run model over time while sweeping insulation thickness
+%%%
+%sweep_insulation(0.01, 0.03, 5, C, 20)
+
+%%%
+%%% Run model over time while sweeping tile thickness
+%%%
+%sweep_tile(0.3, 0.7, 5, C, 1)
 
 
 %%%
 %%% Run and sweep functions
 %%%
-
 
 % Calculates R_tot and solves ode
 % Returns time t in seconds and temperature T in C
@@ -54,6 +78,13 @@ function [t, T] = run(C, days, constant_t)
     else
         [t, T] = helper.solve_ode(tspan, C.T_0, C.area_window, R_tot, C.mass_tile, C.C_tile);
     end
+end
+
+% Runs the model with two thermal masses
+% Returns time t in seconds and temperature T in C
+function [t, T] = run2(C, day)
+    tspan = [0, day*86400];
+    [t, T] = helper.solve_double_ode(tspan, C);
 end
 
 % Sweeps through insulation thickness values and solves ode
